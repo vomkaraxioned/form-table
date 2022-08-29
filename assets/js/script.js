@@ -3,7 +3,17 @@
 */
 const form = document.querySelector('.form');
 const cancel = document.querySelector('input[type=button]');
-const error = document.querySelectorAll('.error')
+const error = document.querySelectorAll('.error');
+const inputs = document.querySelectorAll('input[type=text]');
+const textarea = document.querySelector('textarea');
+
+cancel.addEventListener("click", clear);
+
+function clear() {
+    for (x in inputs) {
+        inputs[x].value = "";
+    }
+}
 
 class Validators {
     isValid = true;
