@@ -26,7 +26,7 @@
         <main>
             <div class="wrapper">
                 <div class="form-block">
-                    <form action="#FIXME" method="GET" class="form">
+                    <form action="#FIXME" method="GET" name="form" class="form">
                         <ul class="fields">
                             <li class="field">
                                 <label>First name:</label>
@@ -45,8 +45,8 @@
                             <li class="field">
                                 <label>Gender:</label>
                                 <div class="input">
-                                    <input type="radio" name="gender" class="radio-btn"><label>Male</label>
-                                    <input type="radio" name="gender" class="radio-btn"><label>Female</label>
+                                    <input type="radio" name="gender" value="male" class="radio-btn"><label>Male</label>
+                                    <input type="radio" name="gender" value="female" class="radio-btn"><label>Female</label>
                                 </div>
                                 <span class="error">e</span>
                             </li>
@@ -59,7 +59,7 @@
                             </li>
                             <li class="field">
                                 <div class="input">
-                                    <input type="checkbox" name="t&c">
+                                    <input type="checkbox" name="t&c" value="yes">
                                     <label>Terms and conditions</label>
                                 </div>
                                 <span class="error">e</span>
