@@ -1,26 +1,125 @@
 /* Author: 
 
 */
+const form = document.querySelector('.form');
+const cancel = document.querySelector('input[type=button]');
+const error = document.querySelectorAll('.error')
 
+class Validators {
+    isValid = false;
+    errorMsg = [];
+    constructor(fields) {
+        this.fnameValidator(fields[0]);
+        this.lnameValidator(fields[1]);
+        this.genderValidator(fields[2]);
+        this.addressValidator(fields[3]);
+        this.displayErrors();
+    }
 
+    fnameValidator(name) {
+        let re = /^[A-Za-z]+$/;
+        try {
+            if (name == "") {
+                throw "first name is empty";
+            } else if (name.length > 15) {
+                this.isValid = false;
+                throw "first name length can't be more than 15";
+            } else if (name.length > 15) {
+                this.isValid = false;
+                throw "first name length can't be less than 3";
+            } else if (re.test(name) == false) {
+                this.isValid = false;
+                throw "First name can't have numbers";
+            } else {
+                this.isValid = true;
+                throw " ";
+            }
+        } catch (e) {
+            this.errorMsg[0] = e;
+        }
+    }
 
+    lnameValidator(lname) {
+        let re = /^[A-Za-z]+$/;
+        try {
+            if (lname == "") {
+                this.isValid = false;
+                throw "first name is empty";
+            } else if (lname.length > 15) {
+                this.isValid = false;
+                throw "first name length can't be more than 15";
+            } else if (lname.length > 15) {
+                this.isValid = false;
+                throw "first name length can't be less than 3";
+            } else if (re.test(lname) == false) {
+                this.isValid = false;
+                throw "First name can't have numbers";
+            } else {
+                this.isValid = true;
+                throw " ";
+            }
+        } catch (e) {
+            this.errorMsg[1] = e;
+        }
+    }
 
+    genderValidator(radio) {
+        try {
+            if (radio == "") {
+                this.isValid = false;
+                throw "please select gender";
+            } else {
+                this.isValid = true;
+                throw " ";
+            }
+        } catch (e) {
+            this.errorMsg[2] = e;
+        }
+    }
 
+    addressValidator(addr) {
+        try {
+            if (addr == "") {
+                this.isValid = false;
+                throw "please fill address field";
+            } else {
+                this.isValid = true;
+                throw " ";
+            }
+        } catch (e) {
+            this.errorMsg[3] = e;
+        }
+    }
 
+    displayErrors() {
+        let x;
+        let len = error.length - 1;
+        for (x = 0; x < len; x++) {
+            if (this.errorMsg[x] != "") {
+                error[x].innerHTML = this.errorMsg[x];
+                error[x].style.textIndent = 0;
+            }
+        }
+        if (this.isValid == true) {
+            alert("validation done");
+        }
+    }
+}
 
+form.addEventListener('submit', validation);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function validation() {
+    let fname = document.forms['form']['first-name'].value;
+    let lname = document.forms['form']['last-name'].value;
+    let gender = document.forms['form']['gender'].value;
+    let address = document.forms['form']['address'].value;
+    const check = document.forms['form']['t&c'].checked;
+    let fields = [fname, lname, gender, address];
+    if (check != true) {
+        error[error.length - 1].innerHTML = "please agree conditions";
+        error[error.length - 1].style.textIndent = 0;
+    } else {
+        let valid = new Validators(fields);
+    }
+    e.preventDefault();
+}
