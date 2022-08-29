@@ -55,16 +55,16 @@ class Validators {
         try {
             if (lname == "") {
                 this.isValid = false;
-                throw "first name is empty";
+                throw "last name is empty";
             } else if (lname.length > 15) {
                 this.isValid = false;
-                throw "first name length can't be more than 15";
+                throw "last name length can't be more than 15";
             } else if (lname.length < 3) {
                 this.isValid = false;
                 throw "first name length can't be less than 3";
             } else if (re.test(lname) == false) {
                 this.isValid = false;
-                throw "First name can't have numbers";
+                throw "last name can't have numbers";
             } else {
                 throw " ";
             }
