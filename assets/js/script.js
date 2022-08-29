@@ -13,6 +13,7 @@ function clear() {
     for (x in inputs) {
         inputs[x].value = "";
     }
+    textarea.value = "";
 }
 
 class Validators {
