@@ -6,7 +6,7 @@ const cancel = document.querySelector('input[type=button]');
 const error = document.querySelectorAll('.error')
 
 class Validators {
-    isValid = false;
+    isValid = true;
     errorMsg = [];
     constructor(fields) {
         this.fnameValidator(fields[0]);
@@ -20,18 +20,19 @@ class Validators {
         let re = /^[A-Za-z]+$/;
         try {
             if (name == "") {
+                this.isValid = false;
                 throw "first name is empty";
             } else if (name.length > 15) {
                 this.isValid = false;
                 throw "first name length can't be more than 15";
-            } else if (name.length > 15) {
+            } else if (name.length < 3) {
                 this.isValid = false;
                 throw "first name length can't be less than 3";
             } else if (re.test(name) == false) {
                 this.isValid = false;
                 throw "First name can't have numbers";
             } else {
-                this.isValid = true;
+
                 throw " ";
             }
         } catch (e) {
@@ -48,14 +49,13 @@ class Validators {
             } else if (lname.length > 15) {
                 this.isValid = false;
                 throw "first name length can't be more than 15";
-            } else if (lname.length > 15) {
+            } else if (lname.length < 3) {
                 this.isValid = false;
                 throw "first name length can't be less than 3";
             } else if (re.test(lname) == false) {
                 this.isValid = false;
                 throw "First name can't have numbers";
             } else {
-                this.isValid = true;
                 throw " ";
             }
         } catch (e) {
@@ -69,7 +69,6 @@ class Validators {
                 this.isValid = false;
                 throw "please select gender";
             } else {
-                this.isValid = true;
                 throw " ";
             }
         } catch (e) {
@@ -82,8 +81,10 @@ class Validators {
             if (addr == "") {
                 this.isValid = false;
                 throw "please fill address field";
+            } else if (addr.length < 10) {
+                this.isValid = false;
+                throw "please fill valid address";
             } else {
-                this.isValid = true;
                 throw " ";
             }
         } catch (e) {
@@ -108,7 +109,7 @@ class Validators {
 
 form.addEventListener('submit', validation);
 
-function validation() {
+function validation(e) {
     let fname = document.forms['form']['first-name'].value;
     let lname = document.forms['form']['last-name'].value;
     let gender = document.forms['form']['gender'].value;
