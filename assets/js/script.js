@@ -14,12 +14,21 @@ function clear() {
         inputs[x].value = "";
     }
     textarea.value = "";
+    error.forEach((e) => {
+        e.style.textIndent = "-9999px";
+    });
 }
 
 class Validators {
     isValid = true;
     errorMsg = [];
     constructor(fields) {
+        if (fields[4] != true) {
+            error[error.length - 1].innerHTML = "please agree conditions";
+            error[error.length - 1].style.textIndent = 0;
+        } else {
+            error[error.length - 1].style.textIndent = "-9999px";
+        }
         this.fnameValidator(fields[0]);
         this.lnameValidator(fields[1]);
         this.genderValidator(fields[2]);
@@ -126,13 +135,7 @@ function validation(e) {
     let gender = document.forms['form']['gender'].value;
     let address = document.forms['form']['address'].value;
     const check = document.forms['form']['t&c'].checked;
-    let fields = [fname, lname, gender, address];
-    if (check != true) {
-        error[error.length - 1].innerHTML = "please agree conditions";
-        error[error.length - 1].style.textIndent = 0;
-    } else {
-        error[error.length - 1].style.textIndent = "-9999px";
-        let valid = new Validators(fields);
-    }
+    let fields = [fname, lname, gender, address, check];
+    let valid = new Validators(fields);
     e.preventDefault();
 }
