@@ -262,18 +262,19 @@ label {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .input {
     flex: 1 75%;
     margin: 0 5%;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .error {
-    width: 75%;
-    padding: 5px 12%;
+    flex-basis: 100%;
+    padding: 5px 0;
     display: block;
     color: #f00;
     text-transform: capitalize;

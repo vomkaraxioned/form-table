@@ -131,6 +131,7 @@ function validation(e) {
         error[error.length - 1].innerHTML = "please agree conditions";
         error[error.length - 1].style.textIndent = 0;
     } else {
+        error[error.length - 1].style.textIndent = "-9999px";
         let valid = new Validators(fields);
     }
     e.preventDefault();
