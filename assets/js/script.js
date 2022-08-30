@@ -24,6 +24,7 @@ class Validators {
     errorMsg = [];
     constructor(fields) {
         if (fields[4] != true) {
+            isValid = false;
             error[error.length - 1].innerHTML = "please agree conditions";
             error[error.length - 1].style.textIndent = 0;
         } else {
