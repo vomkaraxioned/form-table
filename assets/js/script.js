@@ -7,8 +7,7 @@ const cancel = document.querySelector('input[type=button]');
 const error = document.querySelectorAll('.error');
 const inputs = document.querySelectorAll('input[type=text]');
 const textarea = document.querySelector('textarea');
-
-
+let validInput = false;
 cancel.addEventListener("click", clear);
 
 function clear() {
@@ -130,7 +129,7 @@ class Validators {
         }
         if (this.isValid == true) {
             error[error.length - 1].style.textIndent = "-9999px";
-            alert("validation done");
+            validInput = true;
         }
     }
 }
@@ -145,5 +144,38 @@ function validation(e) {
     const check = document.forms['form']['t&c'].checked;
     let fields = [fname, lname, gender, address, check];
     let valid = new Validators(fields);
+    if (validInput) {
+        addData(fields);
+    }
     e.preventDefault();
+}
+
+function addData(fields) {
+    let i;
+    const table = document.querySelector(".table");
+    const ul = document.createElement("ul");
+    const row = document.createElement("li");
+    for (i = 0; i < 6; i++) {
+        const li = document.createElement("li");
+        li.classList.add("col");
+        if (i > 3) {
+            const button = document.createElement("button");
+            if (i == 4) {
+                button.classList.add("edit");
+                button.innerHTML = "edit";
+            } else {
+                button.classList.add("del");
+                button.innerHTML = "delete";
+            }
+            li.appendChild(button);
+        } else {
+            li.innerHTML = fields[i];
+        }
+        ul.appendChild(li);
+    }
+
+    row.classList.add("row");
+    ul.classList.add("cols");
+    row.appendChild(ul);
+    table.appendChild(row);;
 }
