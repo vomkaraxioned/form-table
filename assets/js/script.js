@@ -23,17 +23,11 @@ class Validators {
     isValid = true;
     errorMsg = [];
     constructor(fields) {
-        if (fields[4] != true) {
-            isValid = false;
-            error[error.length - 1].innerHTML = "please agree conditions";
-            error[error.length - 1].style.textIndent = 0;
-        } else {
-            error[error.length - 1].style.textIndent = "-9999px";
-        }
         this.fnameValidator(fields[0]);
         this.lnameValidator(fields[1]);
         this.genderValidator(fields[2]);
         this.addressValidator(fields[3]);
+        this.checkValidator(fields[4]);
         this.displayErrors();
     }
 
@@ -110,6 +104,16 @@ class Validators {
             }
         } catch (e) {
             this.errorMsg[3] = e;
+        }
+    }
+
+    checkValidator(check) {
+        if (check === false) {
+            this.isValid = false;
+            error[error.length - 1].innerHTML = "please agree conditions";
+            error[error.length - 1].style.textIndent = 0;
+        } else {
+            error[error.length - 1].style.textIndent = "-9999px";
         }
     }
 
