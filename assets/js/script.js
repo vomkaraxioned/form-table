@@ -127,6 +127,7 @@ class Validators {
             }
         }
         if (this.isValid == true) {
+            error[error.length - 1].style.textIndent = "-9999px";
             alert("validation done");
         }
     }
