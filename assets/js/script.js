@@ -160,7 +160,6 @@ function validation(e) {
     const check = document.forms['form']['t&c'].checked;
     let fields = [fname, lname, gender, address, check];
     validators(fields);
-    alert(validInput);
     if (validInput) {
         addData(fields);
     }
